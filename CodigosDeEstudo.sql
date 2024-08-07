@@ -11,12 +11,12 @@ José  |  mouse
 */
 select nome,produto
 from clientes cl
-inner join pedidos on clientes.id_cliente = clientes.id_cliente;
+inner join pedidos on clientes.id_cliente = pedidos.id_cliente;
 
 /*  Eu quero o nome e produto do cara que fez o Pedido 101*/
 select nome,produto
 from clientes cl
-inner join pedidos on clientes.id_cliente = clientes.id_cliente 
+inner join pedidos on clientes.id_cliente = pedidos.id_cliente 
 where id_pedido = 101;
 
 
