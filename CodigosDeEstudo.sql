@@ -94,12 +94,10 @@ where raca='Vira Lata';
 
 /*D)Selecione o nome de todos os cachorros que começam com P ou mora no Paraná*/
 
-select c.nome as Nome_Pessoas, p.estado as Estado, p.cidade as Cidade
+select c.nome as Nome_Cachorro, p.estado as Estado, p.cidade as Cidade
 from aulas.Cachorro c
 join aulas.Pessoa p on p.CPF=c.Dono
 where p.estado='PR' or c.nome LIKE 'p%' ;
-
-
 
 
 /*Exemplo de um JOIN mais longo*/
