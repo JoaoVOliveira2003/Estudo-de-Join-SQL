@@ -160,22 +160,22 @@ insert into aulas.estudantes values
 ( 5, " lucas" , 103);
 
 /*1 - Obter uma lista de todos os estudantes e os cursos em que estão matriculados.*/
+
 /*
 SELECT column_name(s)
 FROM table1
 LEFT JOIN table2
 ON table1.column_name = table2.column_name;
 */
-select *
-from aulas.estudantes e
+
+select * from aulas.estudantes e
 left join aulas.cursos c
 on e.cursos_id=c.cursos_id;
 
 /*2 - Listar todos os estudantes, incluindo aqueles que não estão matriculados em nenhum
 curso, e mostrar o nome do curso (se houver).*/
 
-select *
-from aulas.estudantes e
+select * from aulas.estudantes e
 left join aulas.cursos c
 on e.cursos_id=c.cursos_id;
 
@@ -193,7 +193,6 @@ FROM aulas.estudantes e
 INNER JOIN aulas.cursos c ON e.cursos_id = c.cursos_id
 WHERE c.nome_cursos LIKE '%o%';
 
-
 /*5 - Listar a quantidade de alunos que cada curso possui, caso o curso não tenha estudante,
 deverá aparecer o valor zero.*/
 
@@ -201,5 +200,3 @@ SELECT c.cursos_id, c.nome_cursos, COUNT(e.estudantes_id) AS quantidade_alunos
 FROM aulas.cursos c
 LEFT JOIN aulas.estudantes e ON c.cursos_id = e.cursos_id
 GROUP BY c.cursos_id, c.nome_cursos;
-
-
