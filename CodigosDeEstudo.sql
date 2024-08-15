@@ -112,3 +112,14 @@ JOIN TIPOS_PRODUTO pt ON dt.id_tipo = pt.id_tipo
 JOIN RECURSOS_PRODUTO rp ON dt.id_produto = rp.id_produto
 JOIN  DISPONIBILIDADE_TAMANHO sa ON dt.id_produto = sa.id_produto
 WHERE dt.id_tipo = 1  AND el.id_loja = 41  AND sa.id_tamanho = 2;  
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Principios de tipo de junção de join
+ 
+inner join - coloca o dado que esta em duas tabelas ao mesmo tempo 
+
+left  join - pega os dados que estão meio entre as tabelas e tudo que esta na da esquerda 
+rigth join - pega os dados que estão meio entre as tabelas e tudo que esta na da direita
+
+A ordem importa para declarar/mostrar quem é quem
