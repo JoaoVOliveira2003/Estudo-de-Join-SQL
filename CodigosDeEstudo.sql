@@ -123,3 +123,83 @@ left  join - pega os dados que estão meio entre as tabelas e tudo que esta na d
 rigth join - pega os dados que estão meio entre as tabelas e tudo que esta na da direita
 
 A ordem importa para declarar/mostrar quem é quem
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CREATE TABLE aulas.professoras (
+professora_id int null PRIMARY KEY,
+nome_professor varchar(50)
+);
+
+CREATE TABLE aulas.cursos (
+cursos_id int null PRIMARY KEY,
+nome_cursos varchar(50),
+professora_id int null ,
+FOREIGN KEY (professora_id) REFERENCES professoras(professora_id)
+);
+
+CREATE TABLE aulas.estudantes (
+estudantes_id int null PRIMARY KEY,
+nome varchar(50),
+cursos_id int null,
+FOREIGN KEY (cursos_id) REFERENCES aulas.cursos(cursos_id)
+);
+
+insert into aulas.professoras values (1,"Carlos"),(2,"Maria"),(3,"Ana"),(4,"Roberto");
+
+insert into aulas.cursos values (101,"Matematica",1),(102,"Historia",2),(103,"Biologia",3),(104,"Fisica",null);
+
+insert into aulas.estudantes values (1,"Matematica",1),(102,"Historia",2),
+(103,"Biologia",3),(104,"Fisica",null);
+
+insert into aulas.estudantes values 
+( 1, " joao" , 101),
+( 2, " maria" , 102),
+( 3, " ana" , 101),
+( 4, " pedro" , null),
+( 5, " lucas" , 103);
+
+/*1 - Obter uma lista de todos os estudantes e os cursos em que estão matriculados.*/
+/*
+SELECT column_name(s)
+FROM table1
+LEFT JOIN table2
+ON table1.column_name = table2.column_name;
+*/
+select *
+from aulas.estudantes e
+left join aulas.cursos c
+on e.cursos_id=c.cursos_id;
+
+/*2 - Listar todos os estudantes, incluindo aqueles que não estão matriculados em nenhum
+curso, e mostrar o nome do curso (se houver).*/
+
+select *
+from aulas.estudantes e
+left join aulas.cursos c
+on e.cursos_id=c.cursos_id;
+
+/*3 - Listar todos os cursos, incluindo aqueles que não têm estudantes matriculados, e
+mostrar os nomes dos estudantes (se houver).*/
+
+SELECT c.cursos_id, c.nome_cursos, e.estudantes_id, e.nome
+FROM aulas.cursos c
+LEFT JOIN aulas.estudantes e ON c.cursos_id = e.cursos_id;
+
+/*4 - Listar todos os estudantes e os cursos, onde o nome do curso contém a letra 'o'.*/
+
+SELECT e.estudantes_id, e.nome AS nome_estudante, c.cursos_id, c.nome_cursos
+FROM aulas.estudantes e
+INNER JOIN aulas.cursos c ON e.cursos_id = c.cursos_id
+WHERE c.nome_cursos LIKE '%o%';
+
+
+/*5 - Listar a quantidade de alunos que cada curso possui, caso o curso não tenha estudante,
+deverá aparecer o valor zero.*/
+
+SELECT c.cursos_id, c.nome_cursos, COUNT(e.estudantes_id) AS quantidade_alunos
+FROM aulas.cursos c
+LEFT JOIN aulas.estudantes e ON c.cursos_id = e.cursos_id
+GROUP BY c.cursos_id, c.nome_cursos;
+
+
