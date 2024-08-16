@@ -169,7 +169,7 @@ ON table1.column_name = table2.column_name;
 */
 
 select * from aulas.estudantes e
-left join aulas.cursos c
+inner join aulas.cursos c
 on e.cursos_id=c.cursos_id;
 
 /*2 - Listar todos os estudantes, incluindo aqueles que não estão matriculados em nenhum
